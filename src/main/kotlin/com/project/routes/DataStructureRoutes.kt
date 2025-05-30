@@ -34,33 +34,88 @@ fun Route.dataStructureRoutes() {
                 head {
                     title("Estructuras de Datos")
                     link(rel = "stylesheet", href = "/static/css/styles.css")
+                    link(rel = "preconnect", href = "https://fonts.googleapis.com")
+                    link(rel = "preconnect", href = "https://fonts.gstatic.com") {
+                        attributes["crossorigin"] = ""
+                    }
+                    link(rel = "stylesheet", href = "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap")
                 }
                 body {
-                    h1 { +"Estructuras de Datos" }
-                    ul {
-                        li {
-                            a(href = "/data-structures/linked-list") {
-                                +"Lista Doblemente Enlazada"
+                    div {
+                        classes = setOf("main-container")
+                        
+                        h1 { +"🏗️ Estructuras de Datos" }
+                        
+                        div {
+                            style = "text-align: center; margin-bottom: 2rem;"
+                            p { 
+                                style = "color: rgba(255,255,255,0.9); font-size: 1.2rem;"
+                                +"Explora y manipula diferentes estructuras de datos interactivamente" 
                             }
                         }
-                        li {
-                            a(href = "/data-structures/binary-tree") {
-                                +"Árbol Binario"
+                        
+                        div {
+                            classes = setOf("menu")
+                            h2 { +"🔧 Estructuras Disponibles" }
+                            ul {
+                                li {
+                                    a(href = "/data-structures/linked-list") {
+                                        +"🔗 Lista Doblemente Enlazada"
+                                        br
+                                        span {
+                                            style = "font-size: 0.9rem; opacity: 0.8; font-weight: 400;"
+                                            +"Nodos conectados en ambas direcciones"
+                                        }
+                                    }
+                                }
+                                li {
+                                    a(href = "/data-structures/binary-tree") {
+                                        +"🌳 Árbol Binario"
+                                        br
+                                        span {
+                                            style = "font-size: 0.9rem; opacity: 0.8; font-weight: 400;"
+                                            +"Estructura jerárquica con máximo dos hijos por nodo"
+                                        }
+                                    }
+                                }
+                                li {
+                                    a(href = "/data-structures/directed-graph") {
+                                        +"➡️ Grafo Dirigido"
+                                        br
+                                        span {
+                                            style = "font-size: 0.9rem; opacity: 0.8; font-weight: 400;"
+                                            +"Nodos conectados con aristas direccionales"
+                                        }
+                                    }
+                                }
+                                li {
+                                    a(href = "/data-structures/undirected-graph") {
+                                        +"↔️ Grafo No Dirigido"
+                                        br
+                                        span {
+                                            style = "font-size: 0.9rem; opacity: 0.8; font-weight: 400;"
+                                            +"Nodos conectados con aristas bidireccionales"
+                                        }
+                                    }
+                                }
+                                li {
+                                    a(href = "/data-structures/priority-queue") {
+                                        +"⚡ Cola de Prioridad"
+                                        br
+                                        span {
+                                            style = "font-size: 0.9rem; opacity: 0.8; font-weight: 400;"
+                                            +"Cola donde los elementos se procesan por prioridad"
+                                        }
+                                    }
+                                }
                             }
-                        }
-                        li {
-                            a(href = "/data-structures/directed-graph") {
-                                +"Grafo Dirigido"
-                            }
-                        }
-                        li {
-                            a(href = "/data-structures/undirected-graph") {
-                                +"Grafo No Dirigido"
-                            }
-                        }
-                        li {
-                            a(href = "/data-structures/priority-queue") {
-                                +"Cola de Prioridad"
+                            
+                            div {
+                                style = "text-align: center; margin-top: 2rem;"
+                                a(href = "/home") {
+                                    style = "color:rgb(191, 200, 238); text-decoration: none; font-weight: 600;"
+                                    +"← Volver al inicio"
+                                }
                             }
                         }
                     }
@@ -74,61 +129,82 @@ fun Route.dataStructureRoutes() {
                 head {
                     title("Lista Doblemente Enlazada")
                     link(rel = "stylesheet", href = "/static/css/styles.css")
+                    link(rel = "preconnect", href = "https://fonts.googleapis.com")
+                    link(rel = "preconnect", href = "https://fonts.gstatic.com") {
+                        attributes["crossorigin"] = ""
+                    }
+                    link(rel = "stylesheet", href = "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap")
                     script(src = "https://cdn.jsdelivr.net/npm/d3@7") {}
                 }
                 body {
-                    h1 { +"Lista Doblemente Enlazada" }
-                    p { +"Una lista doblemente enlazada es una estructura de datos lineal que contiene un conjunto de nodos donde cada nodo tiene referencias al nodo anterior y al siguiente." }
-                    
                     div {
-                        id = "input-container"
-                        label {
-                            htmlFor = "value-input"
-                            +"Valor: "
-                        }
-                        input {
-                            id = "value-input"
-                            type = InputType.number
-                            value = "42"
-                        }
-                        button {
-                            id = "add-first-button"
-                            +"Agregar al Inicio"
-                        }
-                        button {
-                            id = "add-last-button"
-                            +"Agregar al Final"
-                        }
-                        button {
-                            id = "remove-first-button"
-                            +"Eliminar del Inicio"
-                        }
-                    }
-                    
-                    div {
-                        id = "visualization-container"
+                        classes = setOf("main-container")
+                        
                         div {
-                            id = "linked-list-container"
-                            classes = setOf("linked-list-container")
+                            style = "margin-bottom: 1rem;"
+                            a(href = "/data-structures") {
+                                style = "color:rgb(11, 12, 19); text-decoration: none; font-weight: 600;"
+                                +"← Volver a Estructuras de Datos"
+                            }
                         }
-                        div {
-                            id = "description"
-                            classes = setOf("description")
+                        
+                        h1 { +"🔗 Lista Doblemente Enlazada" }
+                        
+                        p { 
+                            style = "color: rgba(255,255,255,0.9); font-size: 1.1rem; text-align: center; margin-bottom: 2rem;"
+                            +"Una lista doblemente enlazada es una estructura de datos lineal que contiene un conjunto de nodos donde cada nodo tiene referencias al nodo anterior y al siguiente." 
                         }
+                        
                         div {
-                            id = "controls"
-                            classes = setOf("controls")
-                            button {
-                                id = "prev-step"
-                                +"Anterior"
+                            id = "input-container"
+                            label {
+                                htmlFor = "value-input"
+                                +"Valor: "
+                            }
+                            input {
+                                id = "value-input"
+                                type = InputType.number
+                                value = "42"
                             }
                             button {
-                                id = "next-step"
-                                +"Siguiente"
+                                id = "add-first-button"
+                                +"Agregar al Inicio"
                             }
                             button {
-                                id = "play-pause"
-                                +"Reproducir"
+                                id = "add-last-button"
+                                +"Agregar al Final"
+                            }
+                            button {
+                                id = "remove-first-button"
+                                +"Eliminar del Inicio"
+                            }
+                        }
+                        
+                        div {
+                            id = "visualization-container"
+                            div {
+                                id = "linked-list-container"
+                                classes = setOf("linked-list-container")
+                            }
+                            div {
+                                id = "description"
+                                classes = setOf("description")
+                            }
+                            div {
+                                id = "controls"
+                                classes = setOf("controls")
+                                button {
+                                    id = "prev-step"
+                                    +"Anterior"
+                                }
+                                button {
+                                    id = "next-step"
+                                    +"Siguiente"
+                                }
+                                button {
+                                    id = "play-pause"
+                                    +"Reproducir"
+                                }
                             }
                         }
                     }
@@ -166,53 +242,74 @@ fun Route.dataStructureRoutes() {
                 head {
                     title("Árbol Binario")
                     link(rel = "stylesheet", href = "/static/css/styles.css")
+                    link(rel = "preconnect", href = "https://fonts.googleapis.com")
+                    link(rel = "preconnect", href = "https://fonts.gstatic.com") {
+                        attributes["crossorigin"] = ""
+                    }
+                    link(rel = "stylesheet", href = "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap")
                     script(src = "https://cdn.jsdelivr.net/npm/d3@7") {}
                 }
                 body {
-                    h1 { +"Árbol Binario" }
-                    p { +"Un árbol binario es una estructura de datos jerárquica donde cada nodo tiene como máximo dos hijos, referidos como hijo izquierdo y derecho." }
-                    
                     div {
-                        id = "input-container"
-                        label {
-                            htmlFor = "value-input"
-                            +"Valor: "
-                        }
-                        input {
-                            id = "value-input"
-                            type = InputType.number
-                            value = "50"
-                        }
-                        button {
-                            id = "insert-button"
-                            +"Insertar"
-                        }
-                    }
-                    
-                    div {
-                        id = "visualization-container"
+                        classes = setOf("main-container")
+                        
                         div {
-                            id = "tree-container"
-                            classes = setOf("tree-container")
+                            style = "margin-bottom: 1rem;"
+                            a(href = "/data-structures") {
+                                style = "color:rgb(12, 13, 18); text-decoration: none; font-weight: 600;"
+                                +"← Volver a Estructuras de Datos"
+                            }
                         }
-                        div {
-                            id = "description"
-                            classes = setOf("description")
+                        
+                        h1 { +"🌳 Árbol Binario" }
+                        
+                        p { 
+                            style = "color: rgba(255,255,255,0.9); font-size: 1.1rem; text-align: center; margin-bottom: 2rem;"
+                            +"Un árbol binario es una estructura de datos jerárquica donde cada nodo tiene como máximo dos hijos, referidos como hijo izquierdo y derecho." 
                         }
+                        
                         div {
-                            id = "controls"
-                            classes = setOf("controls")
-                            button {
-                                id = "prev-step"
-                                +"Anterior"
+                            id = "input-container"
+                            label {
+                                htmlFor = "value-input"
+                                +"Valor: "
+                            }
+                            input {
+                                id = "value-input"
+                                type = InputType.number
+                                value = "50"
                             }
                             button {
-                                id = "next-step"
-                                +"Siguiente"
+                                id = "insert-button"
+                                +"Insertar"
                             }
-                            button {
-                                id = "play-pause"
-                                +"Reproducir"
+                        }
+                        
+                        div {
+                            id = "visualization-container"
+                            div {
+                                id = "tree-container"
+                                classes = setOf("tree-container")
+                            }
+                            div {
+                                id = "description"
+                                classes = setOf("description")
+                            }
+                            div {
+                                id = "controls"
+                                classes = setOf("controls")
+                                button {
+                                    id = "prev-step"
+                                    +"Anterior"
+                                }
+                                button {
+                                    id = "next-step"
+                                    +"Siguiente"
+                                }
+                                button {
+                                    id = "play-pause"
+                                    +"Reproducir"
+                                }
                             }
                         }
                     }
@@ -239,91 +336,112 @@ fun Route.dataStructureRoutes() {
                 head {
                     title("Grafo Dirigido")
                     link(rel = "stylesheet", href = "/static/css/styles.css")
+                    link(rel = "preconnect", href = "https://fonts.googleapis.com")
+                    link(rel = "preconnect", href = "https://fonts.gstatic.com") {
+                        attributes["crossorigin"] = ""
+                    }
+                    link(rel = "stylesheet", href = "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap")
                     script(src = "https://cdn.jsdelivr.net/npm/d3@7") {}
                 }
                 body {
-                    h1 { +"Grafo Dirigido" }
-                    p { +"Un grafo dirigido es una estructura de datos que consiste en un conjunto de nodos y aristas, donde cada arista tiene una dirección específica." }
-                    
                     div {
-                        id = "input-container"
+                        classes = setOf("main-container")
+                        
                         div {
-                            id = "node-input"
-                            label {
-                                htmlFor = "node-value-input"
-                                +"Valor del Nodo: "
-                            }
-                            input {
-                                id = "node-value-input"
-                                type = InputType.text
-                                value = "A"
-                            }
-                            button {
-                                id = "add-node-button"
-                                +"Agregar Nodo"
+                            style = "margin-bottom: 1rem;"
+                            a(href = "/data-structures") {
+                                style = "color:rgb(8, 9, 13); text-decoration: none; font-weight: 600;"
+                                +"← Volver a Estructuras de Datos"
                             }
                         }
+                        
+                        h1 { +"➡️ Grafo Dirigido" }
+                        
+                        p { 
+                            style = "color: rgba(255,255,255,0.9); font-size: 1.1rem; text-align: center; margin-bottom: 2rem;"
+                            +"Un grafo dirigido es una estructura de datos que consiste en un conjunto de nodos y aristas, donde cada arista tiene una dirección específica." 
+                        }
+                        
                         div {
-                            id = "edge-input"
-                            label {
-                                htmlFor = "from-id-input"
-                                +"Desde ID: "
+                            id = "input-container"
+                            div {
+                                id = "node-input"
+                                label {
+                                    htmlFor = "node-value-input"
+                                    +"Valor del Nodo: "
+                                }
+                                input {
+                                    id = "node-value-input"
+                                    type = InputType.text
+                                    value = "A"
+                                }
+                                button {
+                                    id = "add-node-button"
+                                    +"Agregar Nodo"
+                                }
                             }
-                            input {
-                                id = "from-id-input"
-                                type = InputType.number
-                                value = "0"
-                            }
-                            label {
-                                htmlFor = "to-id-input"
-                                +"Hacia ID: "
-                            }
-                            input {
-                                id = "to-id-input"
-                                type = InputType.number
-                                value = "1"
-                            }
-                            label {
-                                htmlFor = "weight-input"
-                                +"Peso: "
-                            }
-                            input {
-                                id = "weight-input"
-                                type = InputType.number
-                                value = "1.0"
-                                step = "0.1"
-                            }
-                            button {
-                                id = "add-edge-button"
-                                +"Agregar Arista"
+                            div {
+                                id = "edge-input"
+                                label {
+                                    htmlFor = "from-id-input"
+                                    +"Desde ID: "
+                                }
+                                input {
+                                    id = "from-id-input"
+                                    type = InputType.number
+                                    value = "0"
+                                }
+                                label {
+                                    htmlFor = "to-id-input"
+                                    +"Hacia ID: "
+                                }
+                                input {
+                                    id = "to-id-input"
+                                    type = InputType.number
+                                    value = "1"
+                                }
+                                label {
+                                    htmlFor = "weight-input"
+                                    +"Peso: "
+                                }
+                                input {
+                                    id = "weight-input"
+                                    type = InputType.number
+                                    value = "1.0"
+                                    step = "0.1"
+                                }
+                                button {
+                                    id = "add-edge-button"
+                                    +"Agregar Arista"
+                                }
                             }
                         }
-                    }
-                    
-                    div {
-                        id = "visualization-container"
+                        
                         div {
-                            id = "graph-container"
-                            classes = setOf("graph-container")
-                        }
-                        div {
-                            id = "description"
-                            classes = setOf("description")
-                        }
-                        div {
-                            id = "controls"
-                            classes = setOf("controls")
-                            button {
-                                id = "prev-step"
-                                +"Anterior"
+                            id = "visualization-container"
+                            div {
+                                id = "graph-container"
+                                classes = setOf("graph-container")
                             }
-                            button {
-                                id = "next-step"
-                                +"Siguiente"
+                            div {
+                                id = "description"
+                                classes = setOf("description")
                             }
-                            button {
-                                id = "play-pause"
-                                +"Reproducir"
+                            div {
+                                id = "controls"
+                                classes = setOf("controls")
+                                button {
+                                    id = "prev-step"
+                                    +"Anterior"
+                                }
+                                button {
+                                    id = "next-step"
+                                    +"Siguiente"
+                                }
+                                button {
+                                    id = "play-pause"
+                                    +"Reproducir"
+                                }
                             }
                         }
                     }
@@ -356,91 +474,112 @@ fun Route.dataStructureRoutes() {
                 head {
                     title("Grafo No Dirigido")
                     link(rel = "stylesheet", href = "/static/css/styles.css")
+                    link(rel = "preconnect", href = "https://fonts.googleapis.com")
+                    link(rel = "preconnect", href = "https://fonts.gstatic.com") {
+                        attributes["crossorigin"] = ""
+                    }
+                    link(rel = "stylesheet", href = "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap")
                     script(src = "https://cdn.jsdelivr.net/npm/d3@7") {}
                 }
                 body {
-                    h1 { +"Grafo No Dirigido" }
-                    p { +"Un grafo no dirigido es una estructura de datos que consiste en un conjunto de nodos y aristas, donde las aristas no tienen dirección." }
-                    
                     div {
-                        id = "input-container"
+                        classes = setOf("main-container")
+                        
                         div {
-                            id = "node-input"
-                            label {
-                                htmlFor = "node-value-input"
-                                +"Valor del Nodo: "
-                            }
-                            input {
-                                id = "node-value-input"
-                                type = InputType.text
-                                value = "A"
-                            }
-                            button {
-                                id = "add-node-button"
-                                +"Agregar Nodo"
+                            style = "margin-bottom: 1rem;"
+                            a(href = "/data-structures") {
+                                style = "color:rgb(12, 13, 20); text-decoration: none; font-weight: 600;"
+                                +"← Volver a Estructuras de Datos"
                             }
                         }
+                        
+                        h1 { +"↔️ Grafo No Dirigido" }
+                        
+                        p { 
+                            style = "color: rgba(255,255,255,0.9); font-size: 1.1rem; text-align: center; margin-bottom: 2rem;"
+                            +"Un grafo no dirigido es una estructura de datos que consiste en un conjunto de nodos y aristas, donde las aristas no tienen dirección." 
+                        }
+                        
                         div {
-                            id = "edge-input"
-                            label {
-                                htmlFor = "from-id-input"
-                                +"Nodo 1 ID: "
+                            id = "input-container"
+                            div {
+                                id = "node-input"
+                                label {
+                                    htmlFor = "node-value-input"
+                                    +"Valor del Nodo: "
+                                }
+                                input {
+                                    id = "node-value-input"
+                                    type = InputType.text
+                                    value = "A"
+                                }
+                                button {
+                                    id = "add-node-button"
+                                    +"Agregar Nodo"
+                                }
                             }
-                            input {
-                                id = "from-id-input"
-                                type = InputType.number
-                                value = "0"
-                            }
-                            label {
-                                htmlFor = "to-id-input"
-                                +"Nodo 2 ID: "
-                            }
-                            input {
-                                id = "to-id-input"
-                                type = InputType.number
-                                value = "1"
-                            }
-                            label {
-                                htmlFor = "weight-input"
-                                +"Peso: "
-                            }
-                            input {
-                                id = "weight-input"
-                                type = InputType.number
-                                value = "1.0"
-                                step = "0.1"
-                            }
-                            button {
-                                id = "add-edge-button"
-                                +"Agregar Arista"
+                            div {
+                                id = "edge-input"
+                                label {
+                                    htmlFor = "from-id-input"
+                                    +"Nodo 1 ID: "
+                                }
+                                input {
+                                    id = "from-id-input"
+                                    type = InputType.number
+                                    value = "0"
+                                }
+                                label {
+                                    htmlFor = "to-id-input"
+                                    +"Nodo 2 ID: "
+                                }
+                                input {
+                                    id = "to-id-input"
+                                    type = InputType.number
+                                    value = "1"
+                                }
+                                label {
+                                    htmlFor = "weight-input"
+                                    +"Peso: "
+                                }
+                                input {
+                                    id = "weight-input"
+                                    type = InputType.number
+                                    value = "1.0"
+                                    step = "0.1"
+                                }
+                                button {
+                                    id = "add-edge-button"
+                                    +"Agregar Arista"
+                                }
                             }
                         }
-                    }
-                    
-                    div {
-                        id = "visualization-container"
+                        
                         div {
-                            id = "graph-container"
-                            classes = setOf("graph-container")
-                        }
-                        div {
-                            id = "description"
-                            classes = setOf("description")
-                        }
-                        div {
-                            id = "controls"
-                            classes = setOf("controls")
-                            button {
-                                id = "prev-step"
-                                +"Anterior"
+                            id = "visualization-container"
+                            div {
+                                id = "graph-container"
+                                classes = setOf("graph-container")
                             }
-                            button {
-                                id = "next-step"
-                                +"Siguiente"
+                            div {
+                                id = "description"
+                                classes = setOf("description")
                             }
-                            button {
-                                id = "play-pause"
-                                +"Reproducir"
+                            div {
+                                id = "controls"
+                                classes = setOf("controls")
+                                button {
+                                    id = "prev-step"
+                                    +"Anterior"
+                                }
+                                button {
+                                    id = "next-step"
+                                    +"Siguiente"
+                                }
+                                button {
+                                    id = "play-pause"
+                                    +"Reproducir"
+                                }
                             }
                         }
                     }
@@ -473,66 +612,87 @@ fun Route.dataStructureRoutes() {
                 head {
                     title("Cola de Prioridad")
                     link(rel = "stylesheet", href = "/static/css/styles.css")
+                    link(rel = "preconnect", href = "https://fonts.googleapis.com")
+                    link(rel = "preconnect", href = "https://fonts.gstatic.com") {
+                        attributes["crossorigin"] = ""
+                    }
+                    link(rel = "stylesheet", href = "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap")
                     script(src = "https://cdn.jsdelivr.net/npm/d3@7") {}
                 }
                 body {
-                    h1 { +"Cola de Prioridad" }
-                    p { +"Una cola de prioridad es una estructura de datos similar a una cola, pero donde cada elemento tiene asociada una prioridad y los elementos se atienden según su prioridad." }
-                    
                     div {
-                        id = "input-container"
-                        label {
-                            htmlFor = "value-input"
-                            +"Valor: "
-                        }
-                        input {
-                            id = "value-input"
-                            type = InputType.text
-                            value = "Tarea A"
-                        }
-                        label {
-                            htmlFor = "priority-input"
-                            +"Prioridad: "
-                        }
-                        input {
-                            id = "priority-input"
-                            type = InputType.number
-                            value = "1"
-                        }
-                        button {
-                            id = "enqueue-button"
-                            +"Encolar"
-                        }
-                        button {
-                            id = "dequeue-button"
-                            +"Desencolar"
-                        }
-                    }
-                    
-                    div {
-                        id = "visualization-container"
+                        classes = setOf("main-container")
+                        
                         div {
-                            id = "queue-container"
-                            classes = setOf("queue-container")
+                            style = "margin-bottom: 1rem;"
+                            a(href = "/data-structures") {
+                                style = "color:rgb(8, 9, 16); text-decoration: none; font-weight: 600;"
+                                +"← Volver a Estructuras de Datos"
+                            }
                         }
-                        div {
-                            id = "description"
-                            classes = setOf("description")
+                        
+                        h1 { +"⚡ Cola de Prioridad" }
+                        
+                        p { 
+                            style = "color: rgba(255,255,255,0.9); font-size: 1.1rem; text-align: center; margin-bottom: 2rem;"
+                            +"Una cola de prioridad es una estructura de datos similar a una cola, pero donde cada elemento tiene asociada una prioridad y los elementos se atienden según su prioridad." 
                         }
+                        
                         div {
-                            id = "controls"
-                            classes = setOf("controls")
-                            button {
-                                id = "prev-step"
-                                +"Anterior"
+                            id = "input-container"
+                            label {
+                                htmlFor = "value-input"
+                                +"Valor: "
+                            }
+                            input {
+                                id = "value-input"
+                                type = InputType.text
+                                value = "Tarea A"
+                            }
+                            label {
+                                htmlFor = "priority-input"
+                                +"Prioridad: "
+                            }
+                            input {
+                                id = "priority-input"
+                                type = InputType.number
+                                value = "1"
                             }
                             button {
-                                id = "next-step"
-                                +"Siguiente"
+                                id = "enqueue-button"
+                                +"Encolar"
                             }
                             button {
-                                id = "play-pause"
-                                +"Reproducir"
+                                id = "dequeue-button"
+                                +"Desencolar"
+                            }
+                        }
+                        
+                        div {
+                            id = "visualization-container"
+                            div {
+                                id = "queue-container"
+                                classes = setOf("queue-container")
+                            }
+                            div {
+                                id = "description"
+                                classes = setOf("description")
+                            }
+                            div {
+                                id = "controls"
+                                classes = setOf("controls")
+                                button {
+                                    id = "prev-step"
+                                    +"Anterior"
+                                }
+                                button {
+                                    id = "next-step"
+                                    +"Siguiente"
+                                }
+                                button {
+                                    id = "play-pause"
+                                    +"Reproducir"
+                                }
                             }
                         }
                     }

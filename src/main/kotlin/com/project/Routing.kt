@@ -29,26 +29,60 @@ fun Application.configureRouting() {
         get("/home") {
             call.respondHtml {
                 head {
-                    title("Estructuras y Algoritmos Visuales")
+                    title("Estructuras Visuales")
                     link(rel = "stylesheet", href = "/static/css/styles.css")
+                    link(rel = "preconnect", href = "https://fonts.googleapis.com")
+                    link(rel = "preconnect", href = "https://fonts.gstatic.com") {
+                        attributes["crossorigin"] = ""
+                    }
+                    link(rel = "stylesheet", href = "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap")
                 }
                 body {
-                    h1 { +"Estructuras Visuales" }
-                    p { +"Bienvenido al sistema de visualización de algoritmos y estructuras de datos." }
-                    
                     div {
-                        classes = setOf("menu")
-                        h2 { +"Menú Principal" }
-                        ul {
-                            li {
-                                a(href = "/algorithms") {
-                                    +"Algoritmos de Ordenamiento"
+                        classes = setOf("main-container")
+                        
+                        h1 { +"🚀 Estructuras Visuales" }
+                        
+                        div {
+                            style = "text-align: center; margin-bottom: 2rem;"
+                            p { 
+                                style = "color: rgba(255,255,255,0.9); font-size: 1.3rem; font-weight: 500;"
+                                +"Explora algoritmos y estructuras de datos de forma interactiva" 
+                            }
+                        }
+                        
+                        div {
+                            classes = setOf("menu")
+                            h2 { +"📚 Selecciona una categoría" }
+                            ul {
+                                li {
+                                    a(href = "/algorithms") {
+                                        +"🔄 Algoritmos de Ordenamiento"
+                                        br
+                                        span {
+                                            style = "font-size: 0.9rem; opacity: 0.8; font-weight: 400;"
+                                            +"Visualiza cómo funcionan los algoritmos paso a paso"
+                                        }
+                                    }
+                                }
+                                li {
+                                    a(href = "/data-structures") {
+                                        +"🏗️ Estructuras de Datos"
+                                        br
+                                        span {
+                                            style = "font-size: 0.9rem; opacity: 0.8; font-weight: 400;"
+                                            +"Interactúa con diferentes estructuras de datos"
+                                        }
+                                    }
                                 }
                             }
-                            li {
-                                a(href = "/data-structures") {
-                                    +"Estructuras de Datos"
-                                }
+                        }
+                        
+                        div {
+                            style = "text-align: center; margin-top: 2rem; color: rgba(255,255,255,0.7);"
+                            p {
+                                style = "font-size: 0.9rem;"
+                                +"💡 Haz clic en cualquier categoría para comenzar tu exploración"
                             }
                         }
                     }
