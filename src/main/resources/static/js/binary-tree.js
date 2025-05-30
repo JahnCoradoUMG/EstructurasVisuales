@@ -189,12 +189,20 @@ class BinaryTreeVisualizer {
         }
         return className
       })
-      .attr("r", 20)
+      .attr("r", 25)
+      .attr("fill", (d) => (highlightIndices.includes(d.data.index) ? "#ff6b6b" : "#667eea"))
+      .attr("stroke", (d) => (highlightIndices.includes(d.data.index) ? "#e74c3c" : "#2980b9"))
+      .attr("stroke-width", 3)
 
     nodes
       .append("text")
       .attr("class", "tree-label")
       .attr("dy", "0.35em")
+      .attr("fill", "white")
+      .attr("font-size", "16px")
+      .attr("font-weight", "700")
+      .attr("text-anchor", "middle")
+      .style("text-shadow", "1px 1px 2px rgba(0,0,0,0.5)")
       .text((d) => d.data.name)
   }
 
