@@ -160,17 +160,25 @@ class LinkedListVisualizer {
 
     nodeDiv.appendChild(nodeContent)
 
-    // Agregar flechas si hay conexiones
+    // Agregar conexiones bidireccionales si hay siguiente nodo
     if (node.next !== null) {
-      const arrowNext = document.createElement("div")
-      arrowNext.className = "arrow arrow-next"
-      nodeDiv.appendChild(arrowNext)
-    }
+      const connectionsDiv = document.createElement("div")
+      connectionsDiv.className = "node-connections"
 
-    if (node.prev !== null) {
-      const arrowPrev = document.createElement("div")
-      arrowPrev.className = "arrow arrow-prev"
-      nodeDiv.appendChild(arrowPrev)
+      const connectionLine = document.createElement("div")
+      connectionLine.className = "connection-line"
+
+      const arrowRight = document.createElement("div")
+      arrowRight.className = "arrow-right"
+
+      const arrowLeft = document.createElement("div")
+      arrowLeft.className = "arrow-left"
+
+      connectionsDiv.appendChild(connectionLine)
+      connectionsDiv.appendChild(arrowRight)
+      connectionsDiv.appendChild(arrowLeft)
+
+      nodeDiv.appendChild(connectionsDiv)
     }
 
     return nodeDiv
