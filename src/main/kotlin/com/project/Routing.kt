@@ -19,6 +19,7 @@ import io.ktor.server.plugins.cors.routing.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.html.*
+import com.project.routes.graphAlgorithmRoutes
 
 fun Application.configureRouting() {
     routing {
@@ -75,6 +76,16 @@ fun Application.configureRouting() {
                                         }
                                     }
                                 }
+                                li {
+                                    a(href = "/graph-algorithms") {
+                                        +"🔍 Algoritmos de Grafos"
+                                        br
+                                        span {
+                                            style = "font-size: 0.9rem; opacity: 0.8; font-weight: 400;"
+                                            +"Visualiza algoritmos de búsqueda y caminos más cortos"
+                                        }
+                                    }
+                                }
                             }
                         }
                         
@@ -95,6 +106,9 @@ fun Application.configureRouting() {
         
         // Rutas para estructuras de datos
         dataStructureRoutes()
+
+        // Rutas para algoritmos de grafos
+        graphAlgorithmRoutes()
         
         // Archivos estáticos
         static("/static") {
