@@ -15,6 +15,7 @@ class LinkedListVisualizer {
     this.addFirstButton = document.getElementById("add-first-button")
     this.addLastButton = document.getElementById("add-last-button")
     this.removeFirstButton = document.getElementById("remove-first-button")
+    this.removeNodesButton = document.getElementById("remove-nodes-button")
     this.listContainer = document.getElementById("linked-list-container")
     this.description = document.getElementById("description")
     this.prevButton = document.getElementById("prev-step")
@@ -29,6 +30,7 @@ class LinkedListVisualizer {
     this.addFirstButton.addEventListener("click", () => this.addFirst())
     this.addLastButton.addEventListener("click", () => this.addLast())
     this.removeFirstButton.addEventListener("click", () => this.removeFirst())
+    this.removeNodesButton.addEventListener("click", () => this.removeNodes())
     this.prevButton.addEventListener("click", () => this.previousStep())
     this.nextButton.addEventListener("click", () => this.nextStep())
     this.playPauseButton.addEventListener("click", () => this.togglePlayPause())
@@ -52,6 +54,7 @@ class LinkedListVisualizer {
     }
 
     await this.performOperation("/data-structures/linked-list/add-first", { value })
+    this.nextStep()
   }
 
   async addLast() {
@@ -62,10 +65,17 @@ class LinkedListVisualizer {
     }
 
     await this.performOperation("/data-structures/linked-list/add-last", { value })
+    this.nextStep()
   }
 
   async removeFirst() {
     await this.performOperation("/data-structures/linked-list/remove-first", {})
+    this.nextStep()
+  }
+
+  async removeNodes() {
+    await this.performOperation("/data-structures/linked-list/remove-nodes", {})
+    this.nextStep()
   }
 
   async performOperation(endpoint, data) {

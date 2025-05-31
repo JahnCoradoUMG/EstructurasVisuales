@@ -178,6 +178,10 @@ fun Route.dataStructureRoutes() {
                                 id = "remove-first-button"
                                 +"Eliminar del Inicio"
                             }
+                            button {
+                                id = "remove-nodes-button"
+                                +"Eliminar nodos"
+                            }
                         }
                         
                         div {
@@ -228,6 +232,11 @@ fun Route.dataStructureRoutes() {
         
         post("/linked-list/remove-first") {
             val steps = dataStructureService.removeFirstFromLinkedList()
+            call.respond(steps)
+        }
+
+        post("/linked-list/remove-nodes") {
+            val steps = dataStructureService.removeNodesFromDoublyList()
             call.respond(steps)
         }
         
@@ -283,6 +292,10 @@ fun Route.dataStructureRoutes() {
                                 id = "insert-button"
                                 +"Insertar"
                             }
+                            button {
+                                id = "remove-nodes-tree"
+                                +"Eliminar nodos"
+                            }
                         }
                         
                         div {
@@ -322,6 +335,11 @@ fun Route.dataStructureRoutes() {
         post("/binary-tree/insert") {
             val request = call.receive<TreeRequest>()
             val steps = dataStructureService.insertIntoBinaryTree(request.value)
+            call.respond(steps)
+        }
+
+        post("/binary-tree/remove-nodes") {
+            val steps = dataStructureService.removeNodesFromBinaryTree()
             call.respond(steps)
         }
         

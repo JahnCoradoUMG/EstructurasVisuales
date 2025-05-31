@@ -82,6 +82,29 @@ class BinaryTree<T : Comparable<T>> {
         
         return steps
     }
+
+    fun removeNodes(): List<VisualizationStep<List<TreeNode<T>>>> {
+        val steps = mutableListOf<VisualizationStep<List<TreeNode<T>>>>()
+
+        steps.add(
+            VisualizationStep(
+                data = nodes.toList(),
+                description = "Estado actual del árbol antes de eliminar los nodos"
+            )
+        )
+
+        nodes.clear()
+        root = null
+
+        steps.add(
+            VisualizationStep(
+                data = emptyList(),
+                description = "Todos los nodos del árbol han sido eliminados"
+            )
+        )
+
+        return steps
+    }
     
     fun getNodesForVisualization(): List<TreeNode<T>> {
         return nodes.toList()

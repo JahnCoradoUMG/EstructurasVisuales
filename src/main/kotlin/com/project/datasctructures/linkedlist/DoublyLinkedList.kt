@@ -156,6 +156,49 @@ class DoublyLinkedList<T> {
         
         return steps
     }
+
+    fun removeNodes(): List<VisualizationStep<List<Node<T>>>> {
+        val steps = mutableListOf<VisualizationStep<List<Node<T>>>>()
+
+        steps.add(
+            VisualizationStep(
+                data = nodes.toList(),
+                description = "Estado inicial de la lista"
+            )
+        )
+
+        if (head == null) {
+            steps.add(
+                VisualizationStep(
+                    data = nodes.toList(),
+                    description = "La lista ya está vacía"
+                )
+            )
+            return steps
+        }
+
+        val indices = nodes.indices.toList()
+
+        head = null
+        tail = null
+
+        steps.add(
+            VisualizationStep(
+                data = nodes.toList(),
+                description = "Eliminando referencias a head y tail (lista vacía)",
+                highlightIndices = indices
+            )
+        )
+
+        steps.add(
+            VisualizationStep(
+                data = nodes.toList(),
+                description = "Estado final después de eliminar todos los nodos"
+            )
+        )
+        nodes.clear()
+        return steps
+    }
     
     fun getNodesForVisualization(): List<Node<T>> {
         return nodes.toList()
