@@ -4,21 +4,27 @@ import com.project.models.VisualizationStep
 import kotlinx.serialization.Serializable
 
 @Serializable
-class DoublyLinkedList<T> {
-    private val nodes = mutableListOf<Node<T>>()
+data class SinglyNode<T>(
+    val value: T,
+    var next: Int? = null
+)
+
+@Serializable
+class SinglyLinkedList<T> {
+    private val nodes = mutableListOf<SinglyNode<T>>()
     private var head: Int? = null
     private var tail: Int? = null
     
-    fun addFirst(value: T): List<VisualizationStep<List<Node<T>>>> {
-        val steps = mutableListOf<VisualizationStep<List<Node<T>>>>()
+    fun addFirst(value: T): List<VisualizationStep<List<SinglyNode<T>>>> {
+        val steps = mutableListOf<VisualizationStep<List<SinglyNode<T>>>>()
         
         steps.add(VisualizationStep(
             data = nodes.toList(),
-            description = "Estado inicial de la lista"
+            description = "Estado inicial de la lista simple"
         ))
         
         val newNodeIndex = nodes.size
-        val newNode = Node(value = value, prev = null, next = head)
+        val newNode = SinglyNode(value = value, next = head)
         nodes.add(newNode)
         
         steps.add(VisualizationStep(
@@ -27,17 +33,8 @@ class DoublyLinkedList<T> {
             highlightIndices = listOf(newNodeIndex)
         ))
         
-        if (head != null) {
-            nodes[head!!] = nodes[head!!].copy(prev = newNodeIndex)
-            
-            steps.add(VisualizationStep(
-                data = nodes.toList(),
-                description = "Actualizando el nodo anterior head para que su prev apunte al nuevo nodo",
-                highlightIndices = listOf(head!!, newNodeIndex)
-            ))
-        } else {
+        if (head == null) {
             tail = newNodeIndex
-            
             steps.add(VisualizationStep(
                 data = nodes.toList(),
                 description = "La lista estaba vacía, el nuevo nodo es también el tail",
@@ -56,16 +53,16 @@ class DoublyLinkedList<T> {
         return steps
     }
     
-    fun addLast(value: T): List<VisualizationStep<List<Node<T>>>> {
-        val steps = mutableListOf<VisualizationStep<List<Node<T>>>>()
+    fun addLast(value: T): List<VisualizationStep<List<SinglyNode<T>>>> {
+        val steps = mutableListOf<VisualizationStep<List<SinglyNode<T>>>>()
         
         steps.add(VisualizationStep(
             data = nodes.toList(),
-            description = "Estado inicial de la lista"
+            description = "Estado inicial de la lista simple"
         ))
         
         val newNodeIndex = nodes.size
-        val newNode = Node(value = value, prev = tail, next = null)
+        val newNode = SinglyNode(value = value, next = null)
         nodes.add(newNode)
         
         steps.add(VisualizationStep(
@@ -79,7 +76,7 @@ class DoublyLinkedList<T> {
             
             steps.add(VisualizationStep(
                 data = nodes.toList(),
-                description = "Actualizando el nodo anterior tail para que su next apunte al nuevo nodo",
+                description = "Actualizando el nodo tail para que su next apunte al nuevo nodo",
                 highlightIndices = listOf(tail!!, newNodeIndex)
             ))
         } else {
@@ -103,12 +100,12 @@ class DoublyLinkedList<T> {
         return steps
     }
     
-    fun removeFirst(): List<VisualizationStep<List<Node<T>>>> {
-        val steps = mutableListOf<VisualizationStep<List<Node<T>>>>()
+    fun removeFirst(): List<VisualizationStep<List<SinglyNode<T>>>> {
+        val steps = mutableListOf<VisualizationStep<List<SinglyNode<T>>>>()
         
         steps.add(VisualizationStep(
             data = nodes.toList(),
-            description = "Estado inicial de la lista"
+            description = "Estado inicial de la lista simple"
         ))
         
         if (head == null) {
@@ -129,24 +126,19 @@ class DoublyLinkedList<T> {
         
         head = nodes[oldHead].next
         
-        if (head != null) {
-            nodes[head!!] = nodes[head!!].copy(prev = null)
-            
-            steps.add(VisualizationStep(
-                data = nodes.toList(),
-                description = "Actualizando el nuevo head para que su prev sea null",
-                highlightIndices = listOf(head!!)
-            ))
-        } else {
+        if (head == null) {
             tail = null
-            
             steps.add(VisualizationStep(
                 data = nodes.toList(),
                 description = "La lista quedó vacía, tail también es null"
             ))
+        } else {
+            steps.add(VisualizationStep(
+                data = nodes.toList(),
+                description = "Actualizando head al siguiente nodo",
+                highlightIndices = listOf(head!!)
+            ))
         }
-        
-        // No eliminamos realmente el nodo para mantener los índices consistentes en la visualización
         
         steps.add(VisualizationStep(
             data = nodes.toList(),
@@ -157,12 +149,12 @@ class DoublyLinkedList<T> {
         return steps
     }
 
-    fun search(value: T): List<VisualizationStep<List<Node<T>>>> {
-        val steps = mutableListOf<VisualizationStep<List<Node<T>>>>()
+    fun search(value: T): List<VisualizationStep<List<SinglyNode<T>>>> {
+        val steps = mutableListOf<VisualizationStep<List<SinglyNode<T>>>>()
         
         steps.add(VisualizationStep(
             data = nodes.toList(),
-            description = "Iniciando búsqueda del valor $value"
+            description = "Iniciando búsqueda del valor $value en lista simple"
         ))
         
         if (head == null) {
@@ -198,18 +190,18 @@ class DoublyLinkedList<T> {
         
         steps.add(VisualizationStep(
             data = nodes.toList(),
-            description = "Elemento $value no encontrado en la lista"
+            description = "Elemento $value no encontrado en la lista simple"
         ))
         
         return steps
     }
 
-    fun removeByValue(value: T): List<VisualizationStep<List<Node<T>>>> {
-        val steps = mutableListOf<VisualizationStep<List<Node<T>>>>()
+    fun removeByValue(value: T): List<VisualizationStep<List<SinglyNode<T>>>> {
+        val steps = mutableListOf<VisualizationStep<List<SinglyNode<T>>>>()
         
         steps.add(VisualizationStep(
             data = nodes.toList(),
-            description = "Iniciando eliminación del valor $value"
+            description = "Iniciando eliminación del valor $value en lista simple"
         ))
         
         if (head == null) {
@@ -220,43 +212,45 @@ class DoublyLinkedList<T> {
             return steps
         }
         
+        // Caso especial: eliminar el primer nodo
+        if (nodes[head!!].value == value) {
+            steps.add(VisualizationStep(
+                data = nodes.toList(),
+                description = "El valor a eliminar está en el head",
+                highlightIndices = listOf(head!!)
+            ))
+            return removeFirst()
+        }
+        
         var current = head
         var position = 0
         
-        while (current != null) {
+        while (current != null && nodes[current].next != null) {
+            val nextIndex = nodes[current].next!!
+            
             steps.add(VisualizationStep(
                 data = nodes.toList(),
-                description = "Buscando el valor $value... Revisando posición $position",
-                highlightIndices = listOf(current)
+                description = "Revisando si el siguiente nodo tiene el valor $value",
+                highlightIndices = listOf(current, nextIndex)
             ))
             
-            if (nodes[current].value == value) {
+            if (nodes[nextIndex].value == value) {
                 steps.add(VisualizationStep(
                     data = nodes.toList(),
-                    description = "Valor encontrado en posición $position, procediendo a eliminar",
-                    highlightIndices = listOf(current)
+                    description = "Valor encontrado, actualizando enlaces",
+                    highlightIndices = listOf(nextIndex)
                 ))
                 
-                // Actualizar enlaces
-                val prevIndex = nodes[current].prev
-                val nextIndex = nodes[current].next
+                nodes[current] = nodes[current].copy(next = nodes[nextIndex].next)
                 
-                if (prevIndex != null) {
-                    nodes[prevIndex] = nodes[prevIndex].copy(next = nextIndex)
-                } else {
-                    head = nextIndex
-                }
-                
-                if (nextIndex != null) {
-                    nodes[nextIndex] = nodes[nextIndex].copy(prev = prevIndex)
-                } else {
-                    tail = prevIndex
+                if (tail == nextIndex) {
+                    tail = current
                 }
                 
                 steps.add(VisualizationStep(
                     data = nodes.toList(),
-                    description = "Nodo eliminado exitosamente. Enlaces actualizados.",
-                    highlightIndices = if (nextIndex != null) listOf(nextIndex) else if (prevIndex != null) listOf(prevIndex) else emptyList()
+                    description = "Nodo eliminado exitosamente de la lista simple",
+                    highlightIndices = listOf(current)
                 ))
                 
                 return steps
@@ -268,25 +262,13 @@ class DoublyLinkedList<T> {
         
         steps.add(VisualizationStep(
             data = nodes.toList(),
-            description = "Valor $value no encontrado en la lista"
+            description = "Valor $value no encontrado en la lista simple"
         ))
         
         return steps
     }
-
-    fun size(): Int {
-        var count = 0
-        var current = head
-        while (current != null) {
-            count++
-            current = nodes[current].next
-        }
-        return count
-    }
-
-    fun isEmpty(): Boolean = head == null
     
-    fun getNodesForVisualization(): List<Node<T>> {
+    fun getNodesForVisualization(): List<SinglyNode<T>> {
         return nodes.toList()
     }
     
