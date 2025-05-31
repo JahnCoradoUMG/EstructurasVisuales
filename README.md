@@ -3,7 +3,9 @@
 This project was created using the [Ktor Project Generator](https://start.ktor.io).
 
 # Pasos para ejecutar el proyecto
+
 - Tener instalado Java JDK
+
 En la consola ejecutar:
 ```
 make start
