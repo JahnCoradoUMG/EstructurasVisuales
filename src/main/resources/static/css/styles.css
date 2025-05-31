@@ -753,6 +753,7 @@ button:disabled {
   height: 0;
 }
 
+<<<<<<< Updated upstream
 /* Mejoras en los botones de operaciones */
 #input-container button {
   margin: 5px;
@@ -874,4 +875,58 @@ button:disabled {
   white-space: pre-line;
   max-height: 150px;
   overflow-y: auto;
+=======
+/* Información del algoritmo */
+.algorithm-info {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-left: 5px solid #667eea;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.info-section {
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+  color: #2c3e50;
+}
+
+.info-section:last-child {
+  margin-bottom: 0;
+}
+
+.info-section strong {
+  color: #667eea;
+  font-weight: 600;
+}
+
+/* Estilos específicos para nodos en algoritmos de grafos */
+.graph-container .node-visited {
+  fill: #27ae60 !important;
+  stroke: #229954 !important;
+}
+
+.graph-container .node-current {
+  fill: #e74c3c !important;
+  stroke: #c0392b !important;
+  animation: pulse 1s infinite;
+}
+
+.graph-container .edge-path {
+  stroke: #e74c3c !important;
+  stroke-width: 4px !important;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+>>>>>>> Stashed changes
 }
