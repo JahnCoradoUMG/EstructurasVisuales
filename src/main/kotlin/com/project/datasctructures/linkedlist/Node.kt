@@ -5,6 +5,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Node<T>(
     val value: T,
-    var prev: Int? = null,
-    var next: Int? = null
+    val prev: Int?,
+    val next: Int?
 )

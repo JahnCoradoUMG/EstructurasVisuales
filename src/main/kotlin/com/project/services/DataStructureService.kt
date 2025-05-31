@@ -28,6 +28,10 @@ class DataStructureService {
     fun removeFirstFromLinkedList(): List<VisualizationStep<List<Node<Int>>>> {
         return doublyLinkedList.removeFirst()
     }
+
+    fun removeNodesFromDoublyList(): List<VisualizationStep<List<Node<Int>>>> {
+        return doublyLinkedList.removeNodes()
+    }
     
     fun searchInLinkedList(value: Int): List<VisualizationStep<List<Node<Int>>>> {
         return doublyLinkedList.search(value)
@@ -70,6 +74,10 @@ class DataStructureService {
     
     // Árbol binario
     private val binaryTree = BinaryTree<Int>()
+
+    fun removeNodesFromBinaryTree(): List<VisualizationStep<List<TreeNode<Int>>>> {
+        return binaryTree.removeNodes()
+    }
     
     fun insertIntoBinaryTree(value: Int): List<VisualizationStep<List<TreeNode<Int>>>> {
         return binaryTree.insert(value)
