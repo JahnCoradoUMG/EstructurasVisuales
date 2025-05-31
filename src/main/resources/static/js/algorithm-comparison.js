@@ -1,4 +1,5 @@
 import { Chart } from "@/components/ui/chart"
+
 class AlgorithmComparisonVisualizer {
   constructor() {
     this.comparison = null
@@ -82,7 +83,7 @@ class AlgorithmComparisonVisualizer {
         return
       }
 
-      this.compareButton.disabled = true
+      this.compareButton.disabled = false
       this.compareButton.textContent = "Comparando..."
 
       const requestBody = {
