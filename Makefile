@@ -1,7 +1,7 @@
 build:
-	./gradlew build
+	gradlew.bat build
 
 run:
-	./gradlew run
+	gradlew.bat run
 
 start: build run
