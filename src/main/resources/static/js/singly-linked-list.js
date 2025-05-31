@@ -1,4 +1,4 @@
-class LinkedListVisualizer {
+class SinglyLinkedListVisualizer {
   constructor() {
     this.steps = []
     this.currentStep = 0
@@ -17,8 +17,7 @@ class LinkedListVisualizer {
     this.searchButton = document.getElementById("search-button")
     this.removeFirstButton = document.getElementById("remove-first-button")
     this.removeByValueButton = document.getElementById("remove-by-value-button")
-    this.removeNodesButton = document.getElementById("remove-nodes-button")
-    this.listContainer = document.getElementById("linked-list-container")
+    this.listContainer = document.getElementById("singly-linked-list-container")
     this.description = document.getElementById("description")
     this.prevButton = document.getElementById("prev-step")
     this.nextButton = document.getElementById("next-step")
@@ -34,7 +33,6 @@ class LinkedListVisualizer {
     this.searchButton.addEventListener("click", () => this.search())
     this.removeFirstButton.addEventListener("click", () => this.removeFirst())
     this.removeByValueButton.addEventListener("click", () => this.removeByValue())
-    this.removeNodesButton.addEventListener("click", () => this.removeNodes())
     this.prevButton.addEventListener("click", () => this.previousStep())
     this.nextButton.addEventListener("click", () => this.nextStep())
     this.playPauseButton.addEventListener("click", () => this.togglePlayPause())
@@ -42,7 +40,7 @@ class LinkedListVisualizer {
 
   async loadInitialData() {
     try {
-      const response = await fetch("/data-structures/linked-list/data")
+      const response = await fetch("/data-structures/singly-linked-list/data")
       const data = await response.json()
       this.renderList(data.first, data.second.first, data.second.second)
     } catch (error) {
@@ -57,8 +55,7 @@ class LinkedListVisualizer {
       return
     }
 
-    await this.performOperation("/data-structures/linked-list/add-first", { value })
-    this.nextStep()
+    await this.performOperation("/data-structures/singly-linked-list/add-first", { value })
   }
 
   async addLast() {
@@ -68,18 +65,11 @@ class LinkedListVisualizer {
       return
     }
 
-    await this.performOperation("/data-structures/linked-list/add-last", { value })
-    this.nextStep()
+    await this.performOperation("/data-structures/singly-linked-list/add-last", { value })
   }
 
   async removeFirst() {
-    await this.performOperation("/data-structures/linked-list/remove-first", {})
-    this.nextStep()
-  }
-
-  async removeNodes() {
-    await this.performOperation("/data-structures/linked-list/remove-nodes", {})
-    this.nextStep()
+    await this.performOperation("/data-structures/singly-linked-list/remove-first", {})
   }
 
   async search() {
@@ -89,7 +79,7 @@ class LinkedListVisualizer {
       return
     }
 
-    await this.performOperation("/data-structures/linked-list/search", { value })
+    await this.performOperation("/data-structures/singly-linked-list/search", { value })
   }
 
   async removeByValue() {
@@ -99,7 +89,7 @@ class LinkedListVisualizer {
       return
     }
 
-    await this.performOperation("/data-structures/linked-list/remove-by-value", { value })
+    await this.performOperation("/data-structures/singly-linked-list/remove-by-value", { value })
   }
 
   async performOperation(endpoint, data) {
@@ -150,7 +140,7 @@ class LinkedListVisualizer {
     this.listContainer.innerHTML = ""
 
     if (nodes.length === 0) {
-      this.listContainer.innerHTML = '<div class="empty-list">Lista vacía</div>'
+      this.listContainer.innerHTML = '<div class="empty-list">Lista simple vacía</div>'
       return
     }
 
@@ -158,8 +148,8 @@ class LinkedListVisualizer {
     const listInfo = document.createElement("div")
     listInfo.className = "list-info"
     listInfo.innerHTML = `
-    <strong>Información de la Lista:</strong><br>
-    Tamaño: ${nodes.length} nodos
+    <strong>Lista Simplemente Enlazada:</strong><br>
+    Tamaño: ${nodes.length} nodos | Solo enlaces hacia adelante
   `
     this.listContainer.appendChild(listInfo)
 
@@ -183,7 +173,7 @@ class LinkedListVisualizer {
     this.listContainer.innerHTML = ""
 
     if (nodes.length === 0) {
-      this.listContainer.innerHTML = '<div class="empty-list">Lista vacía</div>'
+      this.listContainer.innerHTML = '<div class="empty-list">Lista simple vacía</div>'
       return
     }
 
@@ -229,25 +219,12 @@ class LinkedListVisualizer {
 
     nodeDiv.appendChild(nodeContent)
 
-    // Agregar conexiones bidireccionales si hay siguiente nodo
+    // Agregar conexión simple (solo hacia adelante) si hay siguiente nodo
     if (node.next !== null) {
-      const connectionsDiv = document.createElement("div")
-      connectionsDiv.className = "node-connections"
-
-      const connectionLine = document.createElement("div")
-      connectionLine.className = "connection-line"
-
-      const arrowRight = document.createElement("div")
-      arrowRight.className = "arrow-right"
-
-      const arrowLeft = document.createElement("div")
-      arrowLeft.className = "arrow-left"
-
-      connectionsDiv.appendChild(connectionLine)
-      connectionsDiv.appendChild(arrowRight)
-      connectionsDiv.appendChild(arrowLeft)
-
-      nodeDiv.appendChild(connectionsDiv)
+      const arrowDiv = document.createElement("div")
+      arrowDiv.className = "arrow"
+      arrowDiv.style.margin = "0 15px"
+      nodeDiv.appendChild(arrowDiv)
     }
 
     return nodeDiv
@@ -298,5 +275,5 @@ class LinkedListVisualizer {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  new LinkedListVisualizer()
+  new SinglyLinkedListVisualizer()
 })

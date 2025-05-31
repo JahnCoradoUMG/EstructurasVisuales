@@ -2,6 +2,8 @@ package com.project.services
 
 import com.project.datastructures.linkedlist.DoublyLinkedList
 import com.project.datastructures.linkedlist.Node
+import com.project.datastructures.linkedlist.SinglyLinkedList
+import com.project.datastructures.linkedlist.SinglyNode
 import com.project.datastructures.tree.BinaryTree
 import com.project.datastructures.tree.TreeNode
 import com.project.datastructures.graph.DirectedGraph
@@ -31,8 +33,43 @@ class DataStructureService {
         return doublyLinkedList.removeNodes()
     }
     
+    fun searchInLinkedList(value: Int): List<VisualizationStep<List<Node<Int>>>> {
+        return doublyLinkedList.search(value)
+    }
+
+    fun removeByValueFromLinkedList(value: Int): List<VisualizationStep<List<Node<Int>>>> {
+        return doublyLinkedList.removeByValue(value)
+    }
+    
     fun getLinkedListData(): Pair<List<Node<Int>>, Pair<Int?, Int?>> {
         return Pair(doublyLinkedList.getNodesForVisualization(), Pair(doublyLinkedList.getHeadIndex(), doublyLinkedList.getTailIndex()))
+    }
+    
+    // Lista simplemente enlazada
+    private val singlyLinkedList = SinglyLinkedList<Int>()
+    
+    fun addFirstToSinglyLinkedList(value: Int): List<VisualizationStep<List<SinglyNode<Int>>>> {
+        return singlyLinkedList.addFirst(value)
+    }
+    
+    fun addLastToSinglyLinkedList(value: Int): List<VisualizationStep<List<SinglyNode<Int>>>> {
+        return singlyLinkedList.addLast(value)
+    }
+    
+    fun removeFirstFromSinglyLinkedList(): List<VisualizationStep<List<SinglyNode<Int>>>> {
+        return singlyLinkedList.removeFirst()
+    }
+    
+    fun searchInSinglyLinkedList(value: Int): List<VisualizationStep<List<SinglyNode<Int>>>> {
+        return singlyLinkedList.search(value)
+    }
+
+    fun removeByValueFromSinglyLinkedList(value: Int): List<VisualizationStep<List<SinglyNode<Int>>>> {
+        return singlyLinkedList.removeByValue(value)
+    }
+    
+    fun getSinglyLinkedListData(): Pair<List<SinglyNode<Int>>, Pair<Int?, Int?>> {
+        return Pair(singlyLinkedList.getNodesForVisualization(), Pair(singlyLinkedList.getHeadIndex(), singlyLinkedList.getTailIndex()))
     }
     
     // Árbol binario

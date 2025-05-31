@@ -69,6 +69,16 @@ fun Route.dataStructureRoutes() {
                                     }
                                 }
                                 li {
+                                    a(href = "/data-structures/singly-linked-list") {
+                                        +"⛓️ Lista Simplemente Enlazada"
+                                        br
+                                        span {
+                                            style = "font-size: 0.9rem; opacity: 0.8; font-weight: 400;"
+                                            +"Nodos conectados en una sola dirección"
+                                        }
+                                    }
+                                }
+                                li {
                                     a(href = "/data-structures/binary-tree") {
                                         +"🌳 Árbol Binario"
                                         br
@@ -179,6 +189,14 @@ fun Route.dataStructureRoutes() {
                                 +"Eliminar del Inicio"
                             }
                             button {
+                                id = "search-button"
+                                +"Buscar"
+                            }
+                            button {
+                                id = "remove-by-value-button"
+                                +"Eliminar por Valor"
+                            }
+                            button {
                                 id = "remove-nodes-button"
                                 +"Eliminar nodos"
                             }
@@ -232,6 +250,18 @@ fun Route.dataStructureRoutes() {
         
         post("/linked-list/remove-first") {
             val steps = dataStructureService.removeFirstFromLinkedList()
+            call.respond(steps)
+        }
+
+        post("/linked-list/search") {
+            val request = call.receive<LinkedListRequest>()
+            val steps = dataStructureService.searchInLinkedList(request.value)
+            call.respond(steps)
+        }
+
+        post("/linked-list/remove-by-value") {
+            val request = call.receive<LinkedListRequest>()
+            val steps = dataStructureService.removeByValueFromLinkedList(request.value)
             call.respond(steps)
         }
 
@@ -733,6 +763,138 @@ fun Route.dataStructureRoutes() {
         
         get("/priority-queue/data") {
             val data = dataStructureService.getPriorityQueueData()
+            call.respond(data)
+        }
+
+        // Lista simplemente enlazada
+        get("/singly-linked-list") {
+            call.respondHtml {
+                head {
+                    title("Lista Simplemente Enlazada")
+                    link(rel = "stylesheet", href = "/static/css/styles.css")
+                    link(rel = "preconnect", href = "https://fonts.googleapis.com")
+                    link(rel = "preconnect", href = "https://fonts.gstatic.com") {
+                        attributes["crossorigin"] = ""
+                    }
+                    link(rel = "stylesheet", href = "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap")
+                }
+                body {
+                    div {
+                        classes = setOf("main-container")
+                        
+                        div {
+                            style = "margin-bottom: 1rem;"
+                            a(href = "/data-structures") {
+                                style = "color:rgb(11, 12, 19); text-decoration: none; font-weight: 600;"
+                                +"← Volver a Estructuras de Datos"
+                            }
+                        }
+                        
+                        h1 { +"⛓️ Lista Simplemente Enlazada" }
+                        
+                        p { 
+                            style = "color: rgba(255,255,255,0.9); font-size: 1.1rem; text-align: center; margin-bottom: 2rem;"
+                            +"Una lista simplemente enlazada es una estructura de datos lineal donde cada nodo tiene una referencia únicamente al siguiente nodo." 
+                        }
+                        
+                        div {
+                            id = "input-container"
+                            label {
+                                htmlFor = "value-input"
+                                +"Valor: "
+                            }
+                            input {
+                                id = "value-input"
+                                type = InputType.number
+                                value = "42"
+                            }
+                            button {
+                                id = "add-first-button"
+                                +"Agregar al Inicio"
+                            }
+                            button {
+                                id = "add-last-button"
+                                +"Agregar al Final"
+                            }
+                            button {
+                                id = "search-button"
+                                +"Buscar"
+                            }
+                            button {
+                                id = "remove-first-button"
+                                +"Eliminar del Inicio"
+                            }
+                            button {
+                                id = "remove-by-value-button"
+                                +"Eliminar por Valor"
+                            }
+                        }
+                        
+                        div {
+                            id = "visualization-container"
+                            div {
+                                id = "singly-linked-list-container"
+                                classes = setOf("linked-list-container")
+                            }
+                            div {
+                                id = "description"
+                                classes = setOf("description")
+                            }
+                            div {
+                                id = "controls"
+                                classes = setOf("controls")
+                                button {
+                                    id = "prev-step"
+                                    +"Anterior"
+                                }
+                                button {
+                                    id = "next-step"
+                                    +"Siguiente"
+                                }
+                                button {
+                                    id = "play-pause"
+                                    +"Reproducir"
+                                }
+                            }
+                        }
+                    }
+                    
+                    script(src = "/static/js/singly-linked-list.js") {}
+                }
+            }
+        }
+
+        post("/singly-linked-list/add-first") {
+            val request = call.receive<LinkedListRequest>()
+            val steps = dataStructureService.addFirstToSinglyLinkedList(request.value)
+            call.respond(steps)
+        }
+
+        post("/singly-linked-list/add-last") {
+            val request = call.receive<LinkedListRequest>()
+            val steps = dataStructureService.addLastToSinglyLinkedList(request.value)
+            call.respond(steps)
+        }
+
+        post("/singly-linked-list/remove-first") {
+            val steps = dataStructureService.removeFirstFromSinglyLinkedList()
+            call.respond(steps)
+        }
+
+        post("/singly-linked-list/search") {
+            val request = call.receive<LinkedListRequest>()
+            val steps = dataStructureService.searchInSinglyLinkedList(request.value)
+            call.respond(steps)
+        }
+
+        post("/singly-linked-list/remove-by-value") {
+            val request = call.receive<LinkedListRequest>()
+            val steps = dataStructureService.removeByValueFromSinglyLinkedList(request.value)
+            call.respond(steps)
+        }
+
+        get("/singly-linked-list/data") {
+            val data = dataStructureService.getSinglyLinkedListData()
             call.respond(data)
         }
     }
