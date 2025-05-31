@@ -57,7 +57,7 @@ fun Application.configureRouting() {
                             ul {
                                 li {
                                     a(href = "/algorithms") {
-                                        +"🔄 Algoritmos de Ordenamiento"
+                                        +"🔄 Mejora Educativa"
                                         br
                                         span {
                                             style = "font-size: 0.9rem; opacity: 0.8; font-weight: 400;"
@@ -79,7 +79,7 @@ fun Application.configureRouting() {
                         }
                         
                         div {
-                            style = "text-align: center; margin-top: 2rem; color: rgba(255,255,255,0.7);"
+                            style = "text-align: center; margin-top: 2rem; color: rgba(222, 30, 30, 0);"
                             p {
                                 style = "font-size: 0.9rem;"
                                 +"💡 Haz clic en cualquier categoría para comenzar tu exploración"

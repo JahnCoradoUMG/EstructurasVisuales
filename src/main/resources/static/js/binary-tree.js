@@ -18,6 +18,7 @@ class BinaryTreeVisualizer {
   initializeElements() {
     this.valueInput = document.getElementById("value-input")
     this.insertButton = document.getElementById("insert-button")
+    this.removeNodesButton = document.getElementById("remove-nodes-tree")
     this.treeContainer = document.getElementById("tree-container")
     this.description = document.getElementById("description")
     this.prevButton = document.getElementById("prev-step")
@@ -30,6 +31,7 @@ class BinaryTreeVisualizer {
 
   bindEvents() {
     this.insertButton.addEventListener("click", () => this.insert())
+    this.removeNodesButton.addEventListener("click", () => this.removeNodes())
     this.prevButton.addEventListener("click", () => this.previousStep())
     this.nextButton.addEventListener("click", () => this.nextStep())
     this.playPauseButton.addEventListener("click", () => this.togglePlayPause())
@@ -56,26 +58,35 @@ class BinaryTreeVisualizer {
       return
     }
 
+    await this.performOperation("/data-structures/binary-tree/insert", { value })
+    this.nextStep()
+  }
+
+  async removeNodes() {
+    await this.performOperation("/data-structures/binary-tree/remove-nodes", {})
+    this.nextStep()
+  }
+
+  async performOperation(endpoint, data) {
     try {
-      const response = await fetch("/data-structures/binary-tree/insert", {
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ value }),
+        body: JSON.stringify(data),
       })
 
       if (!response.ok) {
         throw new Error("Error en la respuesta del servidor")
       }
-
       this.steps = await response.json()
       this.currentStep = 0
       this.showStep(this.currentStep)
       this.controlsContainer.style.display = "flex"
     } catch (error) {
       console.error("Error:", error)
-      alert("Error al insertar: " + error.message)
+      alert("Error al realizar la operación: " + error.message)
     }
   }
 
