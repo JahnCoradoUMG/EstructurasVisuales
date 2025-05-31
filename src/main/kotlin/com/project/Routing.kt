@@ -57,7 +57,7 @@ fun Application.configureRouting() {
                             ul {
                                 li {
                                     a(href = "/algorithms") {
-                                        +"🔄 Algoritmos de Ordenamiento"
+                                        +"🔄 Mejora Educativa"
                                         br
                                         span {
                                             style = "font-size: 0.9rem; opacity: 0.8; font-weight: 400;"
