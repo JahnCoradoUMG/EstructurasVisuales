@@ -123,14 +123,6 @@ fun Route.algorithmRoutes() {
                             }
                         }
                         
-                        div {
-                            style = "margin-bottom: 1rem;"
-                            a(href = "/algorithms") {
-                                style = "color: #667eea; text-decoration: none; font-weight: 600;"
-                                +"← Volver a Algoritmos"
-                            }
-                        }
-                        
                         h1 { +"🫧 Bubble Sort" }
                         
                         p { 
@@ -214,13 +206,6 @@ fun Route.algorithmRoutes() {
                             }
                         }
 
-                        div {
-                            style = "margin-bottom: 1rem;"
-                            a(href = "/algorithms") {
-                                style = "color: #667eea; text-decoration: none; font-weight: 600;"
-                                +"← Volver a Algoritmos"
-                            }
-                        }
                         
                         h1 { +"🔍 Selection Sort" }
                         
@@ -302,14 +287,6 @@ fun Route.algorithmRoutes() {
                             a(href = "/algorithms") {
                                 style = "color:rgb(12, 13, 20); text-decoration: none; font-weight: 600;"
                                 +"← Volver a Mejora Educativa"
-                            }
-                        }
-                        
-                        div {
-                            style = "margin-bottom: 1rem;"
-                            a(href = "/algorithms") {
-                                style = "color: #667eea; text-decoration: none; font-weight: 600;"
-                                +"← Volver a Algoritmos"
                             }
                         }
                         
@@ -398,14 +375,6 @@ fun Route.algorithmRoutes() {
                             a(href = "/algorithms") {
                                 style = "color:rgb(12, 13, 20); text-decoration: none; font-weight: 600;"
                                 +"← Volver a Mejora Educativa"
-                            }
-                        }
-                        
-                        div {
-                            style = "margin-bottom: 1rem;"
-                            a(href = "/algorithms") {
-                                style = "color: #667eea; text-decoration: none; font-weight: 600;"
-                                +"← Volver a Algoritmos"
                             }
                         }
                         
